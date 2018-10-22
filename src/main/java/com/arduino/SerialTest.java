@@ -12,11 +12,11 @@ import java.util.Enumeration;
 public class SerialTest implements SerialPortEventListener{
 	SerialPort serialPort;
     /** The port we're normally going to use. */
-	private static final String PORT_NAME = "/dev/ttyACM0";
 	
+	private static final String PORT_NAME = "/dev/ttyACM0";
 	private static final String PORT_NAMES[] = { 
             "/dev/ttyACM0", // Raspberry Pi
-			"/dev/ttyUSB0" // Linux	
+			"/dev/ttyACM1" // Linux	
 	};
 	/**
 	* A BufferedReader which will be fed by a InputStreamReader 
@@ -42,12 +42,12 @@ public class SerialTest implements SerialPortEventListener{
 		//First, Find an instance of serial port as set in PORT_NAMES.
 		while (portEnum.hasMoreElements()) {
 			CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
-		 for (String portName : PORT_NAMES) {
-				if (currPortId.getName().equals(portName)) {
+		 //for (String portName : PORT_NAMES) {
+				if (currPortId.getName().equals(PORT_NAME)) {
 					portId = currPortId;
 					break;
 				}
-			}
+			//}
 		}
 		if (portId == null) {
 			System.out.println("Could not find COM port.");
